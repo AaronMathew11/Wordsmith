@@ -37,11 +37,8 @@ const createWindow = () => {
     fullscreen: true,
     show: false,
     // autoHideMenuBar: true,
-    webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
-    },
   });
-  win.loadFile("Account.html");
+  win.loadFile("./pages/register.html");
 
   const splash = new BrowserWindow({
     fullscreen: true,
@@ -50,7 +47,7 @@ const createWindow = () => {
     alwaysOnTop: true,
     autoHideMenuBar: true,
   });
-  splash.loadFile("splashscreen.html");
+  splash.loadFile("./pages/splashscreen.html");
   splash.center();
 
   setTimeout(function () {

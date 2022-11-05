@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="no"></p>
+    <p id="word"></p>
+    <p id="meaning"></p>
+    <script>
+      let arr = ["politics", "football", "heritage"];
+      var no = [Math.floor(Math.random() * arr.length)];
+      document.getElementById("no").innerHTML = no;
+      fetch("https://api.datamuse.com/words?ml=" + arr[no])
+        .then((data) => {
+          //console.log(data); json format
+          return data.json(); //convert to object
+        })
+        .then((objectdata) => {
+          document.getElementById("word").innerHTML =
+            objectdata[Math.floor(Math.random() * 50)].word;
+
+          //   console.log(objectdata[8].word);
+          fetch(
+            "https://api.dictionaryapi.dev/api/v2/entries/en/" +
+              objectdata[4].word
+          )
+            .then((data2) => {
+              return data2.json();
+            })
+            .then((objdata) => {
+              document.getElementById("meaning").innerHTML =
+                objdata[0].meanings[0].definitions[0].definition;
+            });
+        });
+    </script>
+  </body>
+</html>

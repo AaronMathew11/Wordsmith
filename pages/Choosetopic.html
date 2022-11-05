@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+      body {
+        background-color: #232323;
+      }
+      #redstuff {
+        position: absolute;
+        right: 0px;
+        z-index: -1;
+        bottom: 0px;
+      }
+      p {
+        color: white;
+        font-family: "Poppins", sans-serif;
+        top: 120px;
+        font-size: 30px;
+        position: relative;
+        margin-left: 50px;
+        width: 500px;
+      }
+      #int {
+        position: absolute;
+        z-index: -2;
+        height: 30%;
+      }
+      #search {
+        margin-left: 40px;
+        top: 200px;
+        position: relative;
+        width: 90%;
+      }
+
+      #sbox {
+        margin-right: 20px;
+        border-radius: 6px;
+        border: white solid 0.2px;
+        padding: 10px;
+        width: 30vw;
+        background-color: #232323;
+        color: white;
+      }
+
+      #container {
+        outline: white solid 0.1px;
+        border-radius: 10px;
+        display: flex;
+        position: relative;
+        top: 280px;
+        margin-left: 40px;
+        padding: 30px;
+        flex-wrap: wrap;
+        width: 60vw;
+        margin-top: 40px;
+      }
+      #choicecontainer {
+        outline: white solid 0.1px;
+        border-radius: 10px;
+        display: flex;
+        position: relative;
+        top: 270px;
+        margin-left: 40px;
+        padding: 30px;
+        flex-wrap: wrap;
+        width: 60vw;
+      }
+
+      .topic {
+        background-color: #f2994a;
+        padding: 7px;
+        border-radius: 10px;
+        margin: 10px;
+        color: white;
+        font-family: "Poppins", sans-serif;
+        border: none;
+      }
+
+      #choose {
+        background-color: #27ae60;
+        padding: 7px;
+        border-radius: 10px;
+        margin: 10px;
+        color: white;
+        font-family: "Poppins", sans-serif;
+        border: none;
+      }
+
+      #move {
+        background-color: #27ae60;
+        color: white;
+        font-family: "Poppins", sans-serif;
+        border-radius: 10px;
+        font-size: 16px;
+        padding: 10px;
+        width: 110px;
+        margin-left: 40px;
+        position: relative;
+        top: 330px;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="../images/Interests.png" alt="" id="int" />
+    <p>Add interested topics</p>
+    <img src="../images/redstuffstr.png" alt="" id="redstuff" />
+    <form id="search">
+      <input type="search" placeholder="Search" id="sbox" />
+      <button
+        class="btn btn-outline-warning me-2"
+        type="button"
+        style="padding: 10px"
+        onclick="addsearch()"
+      >
+        Add
+      </button>
+    </form>
+    <div id="choicecontainer"></div>
+    <div id="container">
+      <button class="topic" id="Politics" onclick="addtolist(this.id)">
+        Politics
+      </button>
+      <button class="topic" id="History" onclick="addtolist(this.id)">
+        History
+      </button>
+      <button class="topic" id="Sports" onclick="addtolist(this.id)">
+        Sports
+      </button>
+      <button class="topic" id="Culture" onclick="addtolist(this.id)">
+        Culture
+      </button>
+      <button class="topic" id="Education" onclick="addtolist(this.id)">
+        Education
+      </button>
+      <button class="topic" id="Machine-Learning" onclick="addtolist(this.id)">
+        Machine Learning
+      </button>
+      <button
+        class="topic"
+        id="Artificial-Intelligence"
+        onclick="addtolist(this.id)"
+      >
+        Artificial Intelligence
+      </button>
+      <button class="topic" id="Blockchain" onclick="addtolist(this.id)">
+        Blockchain
+      </button>
+    </div>
+    <button id="move" onclick="submit()">Move on</button>
+    <script>
+      var chosentopics = new Array();
+
+      function addtolist(id) {
+        var str = "";
+        var topic = document.getElementById(id).innerHTML;
+        var container = document.getElementById("choicecontainer");
+        chosentopics.push(topic);
+        for (var i = 0; i < chosentopics.length; i++) {
+          str += '<div id="choose">' + chosentopics[i] + "</div>";
+        }
+        console.log(chosentopics);
+        container.innerHTML = str;
+      }
+
+      function addsearch() {
+        var str = "";
+        var input = document.getElementById("sbox").value;
+        chosentopics.push(input);
+        for (var i = 0; i < chosentopics.length; i++) {
+          str += '<div id="choose">' + chosentopics[i] + "</div>";
+        }
+        console.log(chosentopics);
+        choicecontainer.innerHTML = str;
+      }
+
+      function submit() {
+        sessionStorage.setItem("ChosenTopics", JSON.stringify(chosentopics));
+        window.location.href = "./home.html";
+      }
+    </script>
+  </body>
+</html>

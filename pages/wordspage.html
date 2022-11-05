@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+      body {
+        background-color: #232323;
+      }
+      #main {
+        display: flex;
+        height: 100vh;
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+      }
+      #aside {
+        display: flex;
+        flex-direction: column;
+        background-color: #100f0f;
+        height: 100%;
+        width: 70%;
+        color: white;
+      }
+      .item {
+        background-color: #232323;
+        padding: 30px;
+        margin-top: 5px;
+      }
+      .title {
+        margin-top: 30px;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        font-size: large;
+        font-weight: 10;
+      }
+      #wordcard {
+        background-color: white;
+        border-radius: 20px;
+        padding: 30px;
+        width: 80%;
+        margin-top: 200px;
+        margin-bottom: 40px;
+      }
+      #right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      button {
+        margin: 10px;
+        width: 200px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <div id="aside">
+        <div class="title">Navigation</div>
+        <div
+          class="item"
+          onclick="(function(){
+            window.location.href='home.html';
+            return false;
+            })();return false;"
+        >
+          Home
+        </div>
+        <div
+          class="item"
+          onclick="(function(){
+            window.location.href='Challengeme.html';
+            return false;
+            })();return false;"
+        >
+          Challenge me
+        </div>
+        <div class="title">Go Solo :</div>
+        <div id="Interests"></div>
+      </div>
+      <div id="right">
+        <div id="wordcard">
+          <h2>Word</h2>
+          <br />
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores
+          molestias minima doloremque exercitationem quasi, esse saepe.
+          Reprehenderit hic explicabo dicta facilis laudantium eius beatae
+          magni, qui eligendi temporibus tempora dolores. Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Quos omnis minima, numquam debitis
+          earum assumenda, rem totam, saepe ducimus voluptatem cupiditate quis?
+          Sed corporis suscipit consequuntur aliquam eveniet possimus facere!
+        </div>
+        <div style="display: flex">
+          <button type="button" class="btn btn-success">Familiar</button>
+          <button type="button" class="btn btn-danger">Not Familiar</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      var str = "";
+      var sessionstring = sessionStorage.getItem("ChosenTopics");
+      var chosentopics = JSON.parse(sessionstring);
+      var interests = document.getElementById("Interests");
+      for (var i = 0; i < chosentopics.length; i++) {
+        str +=
+          '<div id="' +
+          chosentopics[i] +
+          '" class="item">' +
+          chosentopics[i] +
+          "</div>";
+      }
+      interests.innerHTML = str;
+    </script>
+  </body>
+</html>
