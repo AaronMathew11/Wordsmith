@@ -3,6 +3,10 @@ const path = require("path");
 
 const isMac = process.platform === "darwin";
 
+require('electron-reload')(__dirname + '/pages/register.html', {
+  electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
+});
+
 const template = [
   ...(isMac
     ? [
@@ -53,7 +57,7 @@ const createWindow = () => {
   setTimeout(function () {
     splash.close();
     win.show();
-  }, 5000);
+  }, 500);
 };
 
 app.whenReady().then(() => {

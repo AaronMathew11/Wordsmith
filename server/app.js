@@ -4,18 +4,15 @@ const path = require("path")
 const cors = require("cors")
 const mongoose = require("mongoose")
 const hostname = '0.0.0.0';
-const bodyParser = require("body-parser")
 const { wordsSchema, User } = require("./model");
 const jwt = require("jsonwebtoken");
 const { verify } = require("./verify")
 
-
+const PORT = 4010
 
 app.use(cors())
 app.use(express.static(__dirname))
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
 
 
@@ -72,6 +69,8 @@ app.use("/login", async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
+
+
     const user = new User({
         email, password
     })
@@ -79,15 +78,19 @@ app.use("/login", async (req, res) => {
     const finding = await User.findOne({ email, password })
 
     if (finding === null) {
+        console.log("HI")
         res.status(400).json({
-            msg: 'Invalid Login Details'
+            data: "User Not already available",
+            flag: false
         })
+
     }
     else {
         var token = jwt.sign({ email }, 'shhhhh');
         console.log(token)
         res.json({
-            token
+            token,
+            flag: true
         })
         //Send JWT TOKEN
 
@@ -101,6 +104,7 @@ app.use("/login", async (req, res) => {
 app.use("/storeTopic", verify, async (req, res) => {
 
     const token = req.token
+    console.log(token)
     const decodedToken = jwt.decode(token)
     const email = decodedToken.email
     const topics = req.body.topics;
@@ -116,14 +120,38 @@ app.use("/storeTopic", verify, async (req, res) => {
     })
 
     console.log(update)
-    res.json(
-        {
-            data: "Success"
-        }
-    )
+    if (update.acknowledged) {
+        res.json(
+            {
+                data: "Success"
+            }
+        )
+    }
+    else {
+        res.json({
+            data: "Failed"
+        })
+    }
 
 })
 
+app.use("/getTopics",verify,async (req,res)=>{
+    console.log("Entered")
+    const token = req.token
+    console.log(token)
+    const decodedToken = jwt.decode(token)
+    const email = decodedToken.email
+    const topicReq = await wordsSchema.findOne({ email })
+    const topics = topicReq.topics
+
+    console.log('Sending')
+    res.json({
+        topics
+    })
+
+
+
+})
 
 
 app.use("/storeWords", verify, async (req, res) => {
@@ -178,10 +206,10 @@ app.use("/getWords", verify, async (req, res) => {
 
         let num = 0;
         let totalWords = 0;
-        let temp=0;
+        let temp = 0;
         while (num < 2) {
 
-            totalWords=totalWords+2;
+            totalWords = totalWords + 2;
             const reqWord = await (await fetch(`https://api.datamuse.com/words?ml=${topics[k]}&max=${totalWords}&md=d`)).json()
 
             // let words = reqWord.filter((obj, i) => {
@@ -194,47 +222,47 @@ app.use("/getWords", verify, async (req, res) => {
             //     }
 
             // })
-            let words=[]
-            for(let i=temp;i<reqWord.length;i++){
+            let words = []
+            for (let i = temp; i < reqWord.length; i++) {
 
                 words.push(reqWord[i]);
 
             }
-          
-          words =  words.map((obj) => {
-            return {
-                word: obj.word,
-                defs: obj.defs
-            }
+
+            words = words.map((obj) => {
+                return {
+                    word: obj.word,
+                    defs: obj.defs
+                }
             })
 
-            words = words.filter((v)=>{
+            words = words.filter((v) => {
 
-                if(v.word.length<=wordLen){
+                if (v.word.length <= wordLen) {
                     return v;
                 }
             })
-            
-                for (let i = 0; i < words.length; i++) {
-                    const word = words[i].word;
-               
-                    for (let j = 0; j < knownWords.length; j++) {
 
-                        if (word == knownWords[j]) {
+            for (let i = 0; i < words.length; i++) {
+                const word = words[i].word;
 
-                            words.splice(i, 1);
+                for (let j = 0; j < knownWords.length; j++) {
 
-                            break;
-                        }
+                    if (word == knownWords[j]) {
+
+                        words.splice(i, 1);
+
+                        break;
                     }
-
                 }
 
-                wordsToDisplay.push(...words)
+            }
+
+            wordsToDisplay.push(...words)
             console.log(words)
             num = num + words.length
-                temp=temp+2;
-        
+            temp = temp + 2;
+
         }
 
 
@@ -242,7 +270,7 @@ app.use("/getWords", verify, async (req, res) => {
 
 
     console.log(wordsToDisplay)
-    
+
 
 
     res.json({
@@ -258,9 +286,9 @@ app.use("/", (req, res) => {
     res.send("Hello")
 })
 
-mongoose.connect("").then(result => {
+mongoose.connect("mongodb+srv://Athul:Athul@cluster0.qhzaz.mongodb.net/?retryWrites=true&w=majority").then(result => {
     console.log("Conncted")
-    app.listen(3002);
+    app.listen(PORT);
 }).catch(
     err => {
         console.log("Error")
