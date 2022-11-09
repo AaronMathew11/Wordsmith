@@ -214,7 +214,7 @@
 
             try {
               const storeWordReq = await fetch(
-                "http://localhost:4010/storeWords",
+                "https://wordsmithvocab.herokuapp.com/storeWords",
                 {
                   headers: {
                     "Content-Type": "application/json",
@@ -250,7 +250,7 @@
         meaningDiv = document.getElementById("meaning");
 
         const wordsFetch = await fetch(
-          "http://localhost:4010/getWordsFromTopic",
+          "https://wordsmithvocab.herokuapp.com/getWordsFromTopic",
           {
             headers: {
               "Content-Type": "application/json",
@@ -279,7 +279,7 @@
         var str = "";
 
         //Show All user topics
-        const topicFetch = await fetch("http://localhost:4010/getTopics", {
+        const topicFetch = await fetch("https://wordsmithvocab.herokuapp.com/getTopics", {
           headers: {
             "Content-Type": "application/json",
           },
@@ -301,7 +301,7 @@
         }
         interests.innerHTML = str;
 
-        const wordsFetch = await fetch("http://localhost:4010/getWords", {
+        const wordsFetch = await fetch("https://wordsmithvocab.herokuapp.com/getWords", {
           headers: {
             "Content-Type": "application/json",
           },
