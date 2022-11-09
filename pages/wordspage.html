@@ -112,9 +112,9 @@
     </div>
   </div>
   <script>
+      const token = localStorage.getItem('token');
+    const tokenParse = JSON.parse(token)
 
-    const tokenParse = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF0aHVsMTIzIiwiaWF0IjoxNjY3OTk5MjE1fQ.n1y4ADH6KLbDwm0awB5StsL6-G9W0ez1qzIiwdbykIU" //JSON.parse(token);
-    console.log(tokenParse)
 
     let count = 0;
     let words;
@@ -152,7 +152,7 @@
       // }
       count++;
       wordDiv.innerHTML = words[count].word;
-      // meaningDiv.innerHTML = words[count].defs[0]
+       meaningDiv.innerHTML = words[count].defs[0]
 
 
       
@@ -167,8 +167,7 @@
       meaningDiv = document.getElementById('meaning')
 
       var str = "";
-      // const token = localStorage.getItem('token');
-
+ 
 
       //Show All user topics
       const topicFetch = await fetch("http://localhost:4010/getTopics", {
