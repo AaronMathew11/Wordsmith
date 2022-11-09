@@ -125,7 +125,7 @@
   <script>
 
     const token = localStorage.getItem('token');
-    const tokenParse = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF0aHVsMTIzIiwiaWF0IjoxNjY3OTk5MjE1fQ.n1y4ADH6KLbDwm0awB5StsL6-G9W0ez1qzIiwdbykIU"
+    const tokenParse = JSON.parse(token)
 
     let knownWord = 0;
     let notKnownWord = 0;
