@@ -27,7 +27,9 @@ async function verify() {
   }
 
   if (name != "" && email != "" && pass != "" && repass != "") {
+    
     document.getElementById("warnbox").style.display = "none";
+
     if (repass != pass) {
       document.getElementById("errorbox").style.display = "block";
 
@@ -88,6 +90,7 @@ async function login() {
     password: pass,
   }
   document.getElementById("invalidcred").style.display = "none";
+
   if (email != "" && pass != "") {
     document.getElementById("warnbox").style.display = "none";
     const req = await fetch("https://wordsmithvocab.herokuapp.com/login", {
