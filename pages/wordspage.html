@@ -106,35 +106,60 @@
         </div>
       </div>
       <div style="display: flex">
-        <button onclick="buttonClick()" type="button" class="btn btn-success">Familiar</button>
-        <button type="button" class="btn btn-danger">Not Familiar</button>
+        <button id="yes" onclick="buttonClick(this)" type="button" class="btn btn-success">Familiar</button>
+        <button id="no" type="button" class="btn btn-danger">Not Familiar</button>
       </div>
     </div>
   </div>
   <script>
 
-     let count = 0;
+    const tokenParse = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF0aHVsMTIzIiwiaWF0IjoxNjY3OTk5MjE1fQ.n1y4ADH6KLbDwm0awB5StsL6-G9W0ez1qzIiwdbykIU" //JSON.parse(token);
+    console.log(tokenParse)
+
+    let count = 0;
     let words;
-    let wordDiv
-    let meaningDiv
+    let wordDiv;
+    let meaningDiv;
+
     function logout() {
       localStorage.removeItem('token')
       window.open("./register.html", "_self");
 
     }
 
-    function buttonClick(){
+    async function buttonClick(e) {
 
-      if(count>words.length){
-        
+      if (e.id == "yes") {
+        //Store that word in database
+
+        const storeWordReq = await fetch("http://localhost:4010/storeWords", {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify({ token: tokenParse,
+          word:words[count].word })
+        })
+
+        const res = await storeWordReq.json();
+
+        console.log(res)
+
       }
-      wordDiv.innerHTML = words[count].word;
-      meaningDiv.innerHTML =words[count].defs[0]
+      console.log(e)
+      // if (count > words.length) {
+        console.log(count)
+      // }
       count++;
+      wordDiv.innerHTML = words[count].word;
+      // meaningDiv.innerHTML = words[count].defs[0]
+
+
+      
 
     }
 
-   
+
     (async () => {
 
 
@@ -143,8 +168,7 @@
 
       var str = "";
       // const token = localStorage.getItem('token');
-      const tokenParse = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF0aHVsMTIzIiwiaWF0IjoxNjY3OTk5MjE1fQ.n1y4ADH6KLbDwm0awB5StsL6-G9W0ez1qzIiwdbykIU" //JSON.parse(token);
-      console.log(tokenParse)
+
 
       //Show All user topics
       const topicFetch = await fetch("http://localhost:4010/getTopics", {
@@ -178,11 +202,10 @@
       })
 
       const wordsRes = await wordsFetch.json();
-
+      console.log(wordsRes.wordsToDisplay)
       words = wordsRes.wordsToDisplay
-        wordDiv.innerHTML = words[0].word;
-        meaningDiv.innerHTML = words[0].defs[0]
-        count++;
+      wordDiv.innerHTML = words[0].word;
+      meaningDiv.innerHTML = words[0].defs[0]
 
 
     })()

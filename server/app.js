@@ -183,6 +183,7 @@ app.use("/storeWords", verify, async (req, res) => {
     const decodedToken = jwt.decode(token)
     const email = decodedToken.email
     const word = req.body.word;
+    console.log(word)
 
     const idReq = await wordsSchema.findOne({ email })
     const easy1 = idReq.easy+1;
@@ -193,6 +194,7 @@ app.use("/storeWords", verify, async (req, res) => {
     console.log(easy1)
     try{
         if (word.length <= 5) {
+            console.log("Stroing easy")
             const update = await wordsSchema.updateOne({ _id: id }, {
                 $addToSet: {
                     knownWords: word,
@@ -204,7 +206,7 @@ app.use("/storeWords", verify, async (req, res) => {
             })
         }
         else if (word.length == 6) {
-    
+            console.log("Stpring medium")
             const update = await wordsSchema.updateOne({ _id: id }, {
                 $addToSet: {
                     knownWords: word,
@@ -216,6 +218,7 @@ app.use("/storeWords", verify, async (req, res) => {
             })
         }
         else {
+            console.log("Storing hard")
             const update = await wordsSchema.updateOne({ _id: id }, {
                 $addToSet: {
                     knownWords: word,
@@ -275,7 +278,7 @@ app.use("/getWords", verify, async (req, res) => {
         let temp = 0;
         while (num < 5) {
 
-            totalWords = totalWords + 2;
+            totalWords = totalWords + 5;
             const reqWord = await (await fetch(`https://api.datamuse.com/words?ml=${topics[k]}&max=${totalWords}&md=d`)).json()
 
             // let words = reqWord.filter((obj, i) => {
@@ -302,6 +305,7 @@ app.use("/getWords", verify, async (req, res) => {
                 }
             })
 
+   
             // words = words.filter((v) => {
 
             //     if (v.word.length <= wordLen) {
@@ -310,25 +314,44 @@ app.use("/getWords", verify, async (req, res) => {
             // })
 
             //Delete words that user already knows
-            for (let i = 0; i < words.length; i++) {
+     
+  
+
+            let i=0;
+            while(i<words.length){
+                let flag=false;
                 const word = words[i].word;
-
+        
                 for (let j = 0; j < knownWords.length; j++) {
-
+                 
                     if (word == knownWords[j]) {
-
+                 
+                        flag=true
                         words.splice(i, 1);
 
+                        console.log(words)
                         break;
                     }
                 }
 
+                if(flag==true){
+                    i=0;
+
+                }
+                else{
+                    i++
+                }
             }
 
+            // console.log("After")
+            
+            // for(let i=0;i<words.length;i++){
+            //     console.log(words[i].word)
+            // }
             wordsToDisplay.push(...words)
-            console.log(words)
+    
             num = num + words.length
-            temp = temp + 2;
+            temp = temp + 5;
 
         }
 
@@ -336,9 +359,11 @@ app.use("/getWords", verify, async (req, res) => {
     }
 
 
-    console.log(wordsToDisplay)
+    // console.log(wordsToDisplay)
 
-
+    for(let i=0;i<wordsToDisplay.length;i++){
+        console.log(wordsToDisplay[i].word)
+    }
 
     res.json({
         wordsToDisplay
