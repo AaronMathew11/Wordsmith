@@ -184,11 +184,12 @@
     }
 
   async  function submit() {
-      sessionStorage.setItem("ChosenTopics", JSON.stringify(chosentopics));
+      // sessionStorage.setItem("ChosenTopics", JSON.stringify(chosentopics));
       //Send the data to server
-      const token = sessionStorage.getItem('token');
+      const token = localStorage.getItem('token');
       const tokenParse = JSON.parse(token);
       //Store topics in database
+    console.log("In choose topic",tokenParse)
       const req = await fetch("http://localhost:4010/storeTopic", {
         headers: {
           'Content-Type': 'application/json'
@@ -199,7 +200,8 @@
           topics:chosentopics
         })
       })
-      console.log(await req.json())
+      const temp = await req.json();
+      console.log(temp.data)
       window.location.href = "./home.html";
     }
   </script>

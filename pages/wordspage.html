@@ -75,7 +75,7 @@
 <body>
   <div id="main">
     <div id="aside">
-      <div class="title">Navigation</div>
+      <div class="title">Navigation <button onclick="logout()">Logout</button></div>
       <div class="item" onclick="(function(){
             window.location.href='home.html';
             return false;
@@ -111,11 +111,17 @@
   </div>
   <script>
 
-    // var sessionstring = sessionStorage.getItem("ChosenTopics");
-    // var chosentopics = JSON.parse(sessionstring);
+    function logout(){
+      localStorage.removeItem('token')
+      window.open("./register.html","_self");
+
+    }
+
+
+    
    (async ()=>{
     var str = "";
-    const token = sessionStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const tokenParse = JSON.parse(token);
     console.log(tokenParse)
 

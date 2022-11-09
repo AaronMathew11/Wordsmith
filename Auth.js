@@ -11,91 +11,107 @@ document.getElementById("registerBox").style.display = "none";
 // }
 
 
-  async function verify() {
-
- 
-    var errorbox = document.getElementById("errorbox");
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var pass = document.getElementById("pass").value;
-    var repass = document.getElementById("repass").value;
-
-    const info = {
-      name,
-      email,
-      password: pass,
-    }
+async function verify() {
 
 
-    if (name != "" && email != "" && pass != "" && repass != "") {
-      if (repass != pass) {
-        document.getElementById("errorbox").style.display = "block";
-      } else {
+  var errorbox = document.getElementById("errorbox");
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+  var pass = document.getElementById("pass").value;
+  var repass = document.getElementById("repass").value;
 
-        //Send Details to Server
-        const req = await fetch("http://localhost:4010/register", {
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          method: "POST",
-          body: JSON.stringify(info)
-        })
-
-        const res = await req.json();
-        console.log(res.flag)
-        if (res.flag == false) {
-          document.getElementById("errorbox").style.display = "block";
-        }
-        else {
-          document.getElementById("registerBox").style.display = "block";
-          setTimeout(() => {
-            window.open("./login.html", "_self");
-          }, 400)
-
-        }
-
-      }
-    } else {
-      document.getElementById("warnbox").style.display = "block";
-    }
+  const info = {
+    name,
+    email,
+    password: pass,
   }
 
 
-  async function login() {
+  if (name != "" && email != "" && pass != "" && repass != "") {
+    if (repass != pass) {
+      document.getElementById("errorbox").style.display = "block";
+    } else {
 
-    var email = document.getElementById("email").value;
-    var pass = document.getElementById("pass").value;
+      //Send Details to Server
+      const req = await fetch("http://localhost:4010/register", {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(info)
+      })
 
-    const info = {
-      email,
-      password: pass,
+      const res = await req.json();
+      console.log(res.flag)
+      if (res.flag == false) {
+        document.getElementById("errorbox").style.display = "block";
+      }
+      else {
+        document.getElementById("registerBox").style.display = "block";
+        setTimeout(() => {
+          document.getElementById('logindiv').style.display='block'
+          document.getElementById('registerdiv').style.display='none'
+        }, 400)
+
+      }
+
     }
+  } else {
+    document.getElementById("warnbox").style.display = "block";
+  }
+}
 
-    const req = await fetch("http://localhost:4010/login", {
+
+async function login() {
+
+  var email = document.getElementById("emailLogin").value;
+  var pass = document.getElementById("passLogin").value;
+
+  const info = {
+    email,
+    password: pass,
+  }
+
+  const req = await fetch("http://localhost:4010/login", {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(info)
+  })
+
+  const res = await req.json();
+  if (res.flag === false) {
+    document.getElementById("warnbox").style.display = "block";
+
+  }
+  else {
+    const token = res.token;
+    console.log(token)
+    localStorage.setItem("token", JSON.stringify(token))
+    const topicVerifyFetch = await fetch("http://localhost:4010/getTopics", {
       headers: {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify(info)
+      body: JSON.stringify({ token })
     })
 
-    const res = await req.json();
-    if (res.flag === false) {
-      document.getElementById("warnbox").style.display = "block";
-
+    const response = await topicVerifyFetch.json();
+    if (response.topics.length > 0) {
+      window.open("./home.html", "_self")
     }
     else {
-      const token = res.token;
-      console.log(token)
-      sessionStorage.setItem("token", JSON.stringify(token))
-      window.open("./Choosetopic.html","_self");
-
+      window.open("./Choosetopic.html", "_self");
     }
-
-
 
 
   }
+
+
+
+
+}
 
 
 

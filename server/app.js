@@ -69,8 +69,6 @@ app.use("/login", async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-
-
     const user = new User({
         email, password
     })
@@ -135,7 +133,7 @@ app.use("/storeTopic", verify, async (req, res) => {
 
 })
 
-app.use("/getTopics",verify,async (req,res)=>{
+app.use("/getTopics", verify, async (req, res) => {
     console.log("Entered")
     const token = req.token
     console.log(token)
@@ -155,7 +153,7 @@ app.use("/getTopics",verify,async (req,res)=>{
 
 
 app.use("/storeWords", verify, async (req, res) => {
-
+    console.log("You got it here")
     const token = req.token
     const decodedToken = jwt.decode(token)
     const email = decodedToken.email

@@ -3,10 +3,6 @@ const path = require("path");
 
 const isMac = process.platform === "darwin";
 
-require('electron-reload')(__dirname + '/pages/register.html', {
-  electron: path.join(__dirname, 'node_modules', '.bin', 'electron')
-});
-
 const template = [
   ...(isMac
     ? [
@@ -42,7 +38,7 @@ const createWindow = () => {
     show: false,
     // autoHideMenuBar: true,
   });
-  win.loadFile("./pages/register.html");
+  win.loadFile("./pages/test.html");
 
   const splash = new BrowserWindow({
     fullscreen: true,
