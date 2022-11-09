@@ -38,7 +38,7 @@ const createWindow = () => {
     show: false,
     // autoHideMenuBar: true,
   });
-  win.loadFile("./pages/register.html");
+  win.loadFile("./pages/test.html");
 
   const splash = new BrowserWindow({
     fullscreen: true,
@@ -53,7 +53,7 @@ const createWindow = () => {
   setTimeout(function () {
     splash.close();
     win.show();
-  }, 5000);
+  }, 500);
 };
 
 app.whenReady().then(() => {

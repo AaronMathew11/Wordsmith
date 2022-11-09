@@ -84,7 +84,7 @@
   <img src="../images/redstuffstr.png" alt="no image" id="redstuff" />
   <img src="../images/Frame 1@2x.png" alt="error" height="150px" id="logo" />
   <p>
-    orem ipsum dolor sit amet consectetur adipisicing elit. Dolore, dolorum?
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, dolorum?
     Omnis vitae, eum voluptatem quisquam, cupiditate cumque mollitia eaque
     aliquid, beatae tenetur magni <br />sit saepe consectetur voluptate quam
     excepturi quia?
@@ -96,75 +96,30 @@
     </symbol>
   </svg>
 
-  <div class="alert alert-danger alert-dismissible fade show" id="errorbox" style="display: none">
+  <div class="alert alert-danger alert-dismissible fade show" style="display: none" id="errorbox">
     <strong>Wait!</strong> Looks like your passwords dont match
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
   </div>
 
-  <div class="alert alert-danger alert-dismissible fade show" id="registerBox" style="display: none">
+  <div class="alert alert-danger alert-dismissible fade show" style="display: none" id="registerBox">
     <strong>Wait!</strong> Registered!! Redirecting to Login
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
   </div>
 
-  <div class="alert alert-warning alert-dismissible fade show" role="alert" id="warnbox" style="display: none">
+  <div class="alert alert-warning alert-dismissible fade show" style="display: none" role="alert" id="warnbox">
     <div>
       <strong>Umm..</strong> Make sure you fill in all the details!
       <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
   </div>
 
-  <div id="registerdiv" style="display: none">
-    <form action="">
-      <input type="text" class="textbox" placeholder="Name" id="name" /><br />
-      <input type="email" class="textbox" placeholder="Email" id="email" /><br />
-      <input type="password" class="textbox" placeholder="Password" id="pass" /><br />
-      <input type="password" class="textbox" placeholder="Retype Password" id="repass" /><br />
-      <button id="signin" onclick="verify()" type="button">Sign in</button>
-    </form>
-  </div>
-
-  <div id="logindiv">
-    <form action="">
-      <input type="email" class="textbox" placeholder="Email" id="emailLogin" /><br />
-      <input type="password" class="textbox" placeholder="Password" id="passLogin" /><br />
-      <button id="signin" onclick="login()" type="button">Log in</button>
-    </form>
-  </div>
-
-  <div>
-    <div id="loginButton" onclick="loginHandler()"  style="display: none" onclick="loginHandler()"><button>Login</button></div>
-    <div id="registerButton" onclick="registerHandler()"><button>Register</button></div>
-  </div>
+  <form action="">
+    <input type="email" class="textbox" placeholder="Email" id="email" /><br />
+    <input type="password" class="textbox" placeholder="Password" id="pass" /><br />
+    <button id="signin" onclick="login()" type="button">Log in</button>
+  </form>
   <img src="../images/word smith light.png" alt=no image" id="wordlight">
   </div>
-
-  <script>
-
-    function loginHandler(){
-      let loginButton = document.getElementById('loginButton');
-      let registerButton = document.getElementById('registerButton');
-      let logindiv = document.getElementById('logindiv')
-      let registerdiv = document.getElementById('registerdiv')
-      loginButton.style.display='none';
-      registerdiv.style.display='none';
-      logindiv.style.display='block'
-      registerButton.style.display='block'
-    }
-
-    function registerHandler(){
-
-    let loginButton = document.getElementById('loginButton');
-      let registerButton = document.getElementById('registerButton');
-      let logindiv = document.getElementById('logindiv')
-      let registerdiv = document.getElementById('registerdiv')
-      registerButton.style.display = 'none'
-      logindiv.style.display = 'none'
-      registerdiv.style.display = 'block'
-      loginButton.style.display = 'block'
-
-    }
-
-  </script>
   <script src="../Auth.js"></script>
 
 </body>
