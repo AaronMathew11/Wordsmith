@@ -53,7 +53,7 @@ const createWindow = () => {
   setTimeout(function () {
     splash.close();
     win.show();
-  }, 5000);
+  }, 500);
 };
 
 app.whenReady().then(() => {

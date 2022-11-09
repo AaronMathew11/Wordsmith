@@ -27,46 +27,52 @@ async function verify() {
   }
 
   if (name != "" && email != "" && pass != "" && repass != "") {
+    document.getElementById("warnbox").style.display = "none";
     if (repass != pass) {
       document.getElementById("errorbox").style.display = "block";
+
+      // setTimeout(()=>{
+      //   document.getElementById("errorbox").style.display = "none";
+      // },1000)
     } else {
+      document.getElementById("errorbox").style.display = "none";
+      if (pass.length > 8) {
+        document.getElementById("passshort").style.display = "none";
+        //Send Details to Server  
+        const req = await fetch("https://wordsmithvocab.herokuapp.com/register", {
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: "POST",
+          body: JSON.stringify(info)
+        })
 
-      if(pass.length>8){
+        const res = await req.json();
+        console.log(res.flag)
+        if (res.flag == false) {
+          document.getElementById("errorbox").style.display = "block";
+        }
+        else {
+          document.getElementById("registerBox").style.display = "block";
+          setTimeout(() => {
+            document.getElementById('logindiv').style.display = 'block'
+            document.getElementById('registerdiv').style.display = 'none'
+          }, 400)
 
-      //Send Details to Server
-      const req = await fetch("https://wordsmithvocab.herokuapp.com/register", {
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify(info)
-      })
+        }
 
-      const res = await req.json();
-      console.log(res.flag)
-      if (res.flag == false) {
-        document.getElementById("errorbox").style.display = "block";
       }
       else {
-        document.getElementById("registerBox").style.display = "block";
-        setTimeout(() => {
-          document.getElementById('logindiv').style.display='block'
-          document.getElementById('registerdiv').style.display='none'
-        }, 400)
+        document.getElementById("passshort").style.display = "block";
 
       }
-
     }
-    else{
-      document.getElementById("passshort").style.display = "block";
 
-    }
+
   }
+  document.getElementById("warnbox").style.display = "block";
 
 
-} else {
-    document.getElementById("userexists").style.display = "block";
-  }
 }
 
 
@@ -81,43 +87,53 @@ async function login() {
     email,
     password: pass,
   }
-
-  const req = await fetch("https://wordsmithvocab.herokuapp.com/login", {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify(info)
-  })
-
-  const res = await req.json();
-  if (res.flag === false) {
-    document.getElementById("invalidcred").style.display = "block";
-
-  }
-  else {
-    const token = res.token;
-    console.log(token)
-    localStorage.setItem("token", JSON.stringify(token))
-    const topicVerifyFetch = await fetch("https://wordsmithvocab.herokuapp.com/getTopics", {
+  document.getElementById("invalidcred").style.display = "none";
+  if (email != "" && pass != "") {
+    document.getElementById("warnbox").style.display = "none";
+    const req = await fetch("https://wordsmithvocab.herokuapp.com/login", {
       headers: {
         'Content-Type': 'application/json'
       },
       method: "POST",
-      body: JSON.stringify({ token })
+      body: JSON.stringify(info)
     })
 
-    const response = await topicVerifyFetch.json();
-    if (response.topics.length > 0) {
-      window.open("./home.html", "_self")
+    const res = await req.json();
+    if (res.flag === false) {
+      document.getElementById("invalidcred").style.display = "block";
+
     }
     else {
-      window.open("./Choosetopic.html", "_self");
+      document.getElementById("invalidcred").style.display = "none";
+      const token = res.token;
+      console.log(token)
+      localStorage.setItem("token", JSON.stringify(token))
+      const topicVerifyFetch = await fetch("https://wordsmithvocab.herokuapp.com/getTopics", {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({ token })
+      })
+
+      const response = await topicVerifyFetch.json();
+      if (response.topics.length > 0) {
+        window.open("./home.html", "_self")
+      }
+      else {
+        window.open("./Choosetopic.html", "_self");
+      }
+
+
     }
 
 
   }
+  else{
 
+    document.getElementById("warnbox").style.display = "block";
+
+  }
 
 
 
