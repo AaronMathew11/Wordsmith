@@ -39,7 +39,7 @@
       margin-right: 20px;
     }
 
-    #signin {
+    #signin, #register {
       background-color: #a74242;
       color: white;
       font-family: "Poppins", sans-serif;
@@ -57,6 +57,11 @@
       margin-left: 170px;
     }
 
+    #regbtn,#lgnbtn{
+      border: none;
+      background: none;
+    }
+
     #redstuff {
       position: absolute;
       right: 0px;
@@ -72,7 +77,7 @@
     }
 
     #errorbox,
-    #warnbox {
+    #warnbox, #invalidcred,#userexits,#passshort {
       width: 50%;
       margin-left: 40px;
       margin-top: 40px;
@@ -81,7 +86,7 @@
 </head>
 
 <body>
-  <img src="../images/redstuffstr.png" alt="no image" id="redstuff" />
+  <img src="../images/red stuff.png" alt="no image" id="redstuff" />
   <img src="../images/Frame 1@2x.png" alt="error" height="150px" id="logo" />
   <p>
     orem ipsum dolor sit amet consectetur adipisicing elit. Dolore, dolorum?
@@ -101,6 +106,16 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
   </div>
 
+  <div class="alert alert-danger alert-dismissible fade show" id="passshort" style="display: none">
+    Make sure to create a strong password ( Hint: Keep the number of characters over 8 )
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+
+  <div class="alert alert-danger alert-dismissible fade show" id="userexits" style="display: none">
+    Looks like you already hava an account...
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
+
   <div class="alert alert-danger alert-dismissible fade show" id="registerBox" style="display: none">
     <strong>Wait!</strong> Registered!! Redirecting to Login
     <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
@@ -113,13 +128,20 @@
     </div>
   </div>
 
+  <div class="alert alert-warning alert-dismissible fade show" role="alert" id="invalidcred" style="display: none">
+    <div>
+      <strong>Invalid Credentials</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+  </div>
+
   <div id="registerdiv" style="display: none">
     <form action="">
       <input type="text" class="textbox" placeholder="Name" id="name" /><br />
       <input type="email" class="textbox" placeholder="Email" id="email" /><br />
       <input type="password" class="textbox" placeholder="Password" id="pass" /><br />
       <input type="password" class="textbox" placeholder="Retype Password" id="repass" /><br />
-      <button id="signin" onclick="verify()" type="button">Sign in</button>
+      <button id="register" onclick="verify()" type="button">Sign up</button>
     </form>
   </div>
 
@@ -132,8 +154,8 @@
   </div>
 
   <div>
-    <div id="loginButton" onclick="loginHandler()"  style="display: none" onclick="loginHandler()"><button>Login</button></div>
-    <div id="registerButton" onclick="registerHandler()"><button>Register</button></div>
+    <div id="loginButton" onclick="loginHandler()"  style="display: none; color:white;margin-left: 305px; margin-top: 20px;">Have an account ?<br><button id="lgnbtn" style="color:#f2994a ; margin-left: 35px;">Login</button></div>
+    <div id="registerButton" onclick="registerHandler()" style="color:white;margin-left: 330px; margin-top: 20px;">New here ?<br><button id="regbtn" style="color:#f2994a ;">Register</button></div>
   </div>
   <img src="../images/word smith light.png" alt=no image" id="wordlight">
   </div>

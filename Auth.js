@@ -2,6 +2,10 @@
 document.getElementById("errorbox").style.display = "none";
 document.getElementById("warnbox").style.display = "none";
 document.getElementById("registerBox").style.display = "none";
+document.getElementById("invalidcred").style.display = "none";
+document.getElementById("userexists").style.display = "none";
+document.getElementById("passshort").style.display = "none";
+
 
 // const token = sessionStorage.getItem('token');
 // console.log(token)
@@ -32,6 +36,8 @@ async function verify() {
       document.getElementById("errorbox").style.display = "block";
     } else {
 
+      if(pass.length>8){
+
       //Send Details to Server
       const req = await fetch("http://localhost:4010/register", {
         headers: {
@@ -56,8 +62,15 @@ async function verify() {
       }
 
     }
-  } else {
-    document.getElementById("warnbox").style.display = "block";
+    else{
+      document.getElementById("passshort").style.display = "block";
+
+    }
+  }
+
+
+} else {
+    document.getElementById("userexists").style.display = "block";
   }
 }
 
@@ -82,7 +95,7 @@ async function login() {
 
   const res = await req.json();
   if (res.flag === false) {
-    document.getElementById("warnbox").style.display = "block";
+    document.getElementById("invalidcred").style.display = "block";
 
   }
   else {
