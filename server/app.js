@@ -508,5 +508,3 @@ mongoose.connect("mongodb+srv://Athul:Athul@cluster0.qhzaz.mongodb.net/?retryWri
         console.log("Error")
     }
 )
-
-

@@ -2,6 +2,10 @@
 document.getElementById("errorbox").style.display = "none";
 document.getElementById("warnbox").style.display = "none";
 document.getElementById("registerBox").style.display = "none";
+document.getElementById("invalidcred").style.display = "none";
+document.getElementById("userexists").style.display = "none";
+document.getElementById("passshort").style.display = "none";
+
 
 // const token = sessionStorage.getItem('token');
 // console.log(token)
