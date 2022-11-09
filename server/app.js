@@ -284,7 +284,7 @@ app.use("/", (req, res) => {
     res.send("Hello")
 })
 
-mongoose.connect("mongodb+srv://Athul:Athul@cluster0.qhzaz.mongodb.net/?retryWrites=true&w=majority").then(result => {
+mongoose.connect("").then(result => {
     console.log("Conncted")
     app.listen(PORT);
 }).catch(
