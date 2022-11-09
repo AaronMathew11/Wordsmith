@@ -30,7 +30,6 @@ async function verify() {
     password: pass,
   }
 
-
   if (name != "" && email != "" && pass != "" && repass != "") {
     if (repass != pass) {
       document.getElementById("errorbox").style.display = "block";
@@ -73,6 +72,8 @@ async function verify() {
     document.getElementById("userexists").style.display = "block";
   }
 }
+
+
 
 
 async function login() {

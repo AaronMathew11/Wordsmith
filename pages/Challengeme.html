@@ -34,5 +34,15 @@
        " onclick="logout()">Logout <img src="../images/logout.png" alt="no image" style="margin-left: 15px;" width="35px" height="35px"></div> 
       </header>
 <p>Comming Soon!</p>
+<div style="color: white;cursor: pointer;" onclick="window.history.go(-1); return false;"> Go back</div>
 </body>
+<script>
+
+function logout() {
+      localStorage.removeItem('token')
+      window.open("./register.html", "_self");
+
+    }
+
+</script>
 </html>
