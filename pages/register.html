@@ -154,28 +154,32 @@
   </div>
 
   <div>
-    <div id="loginButton" onclick="loginHandler()"  style="display: none; color:white;margin-left: 305px; margin-top: 20px;">Have an account ?<br><button id="lgnbtn" style="color:#f2994a ; margin-left: 35px;">Login</button></div>
-    <div id="registerButton" onclick="registerHandler()" style="color:white;margin-left: 330px; margin-top: 20px;">New here ?<br><button id="regbtn" style="color:#f2994a ;">Register</button></div>
+    <div id="loginButton" onclick="loginHandler()"
+      style="display: none; color:white;margin-left: 305px; margin-top: 20px;">Have an account ?<br><button id="lgnbtn"
+        style="color:#f2994a ; margin-left: 35px;">Login</button></div>
+    <div id="registerButton" onclick="registerHandler()" style="color:white;margin-left: 330px; margin-top: 20px;">New
+      here ?<br><button id="regbtn" style="color:#f2994a ;">Register</button></div>
   </div>
   <img src="../images/word smith light.png" alt=no image" id="wordlight">
   </div>
 
+
   <script>
 
-    function loginHandler(){
+    function loginHandler() {
       let loginButton = document.getElementById('loginButton');
       let registerButton = document.getElementById('registerButton');
       let logindiv = document.getElementById('logindiv')
       let registerdiv = document.getElementById('registerdiv')
-      loginButton.style.display='none';
-      registerdiv.style.display='none';
-      logindiv.style.display='block'
-      registerButton.style.display='block'
+      loginButton.style.display = 'none';
+      registerdiv.style.display = 'none';
+      logindiv.style.display = 'block'
+      registerButton.style.display = 'block'
     }
 
-    function registerHandler(){
+    function registerHandler() {
 
-    let loginButton = document.getElementById('loginButton');
+      let loginButton = document.getElementById('loginButton');
       let registerButton = document.getElementById('registerButton');
       let logindiv = document.getElementById('logindiv')
       let registerdiv = document.getElementById('registerdiv')

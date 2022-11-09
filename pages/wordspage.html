@@ -1,199 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://getbootstrap.com/docs/5.2/assets/css/docs.css"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <style>
-      body {
-        background-color: #232323;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
-      #main {
-        display: flex;
-        height: 100vh;
-        font-family: "Poppins", sans-serif;
-        margin: 0;
-      }
+  <style>
+    body {
+      background-color: #232323;
+    }
 
-      #aside {
-        display: flex;
-        flex-direction: column;
-        background-color: #100f0f;
-        height: 100%;
-        width: 70%;
-        color: white;
-      }
+    #main {
+      display: flex;
+      height: 100vh;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+    }
 
-      .item {
-        background-color: #232323;
-        padding: 30px;
-        margin-top: 5px;
-      }
+    #aside {
+      display: flex;
+      flex-direction: column;
+      background-color: #100f0f;
+      height: 100%;
+      width: 70%;
+      color: white;
+    }
 
-      .title {
-        margin-top: 30px;
-        margin-left: 20px;
-        margin-bottom: 20px;
-        font-size: large;
-        font-weight: 10;
-      }
+    .item {
+      background-color: #232323;
+      padding: 30px;
+      margin-top: 5px;
+    }
 
-      #wordcard {
-        background-color: white;
-        border-radius: 20px;
-        padding: 30px;
-        width: 80%;
-        margin-top: 200px;
-        margin-bottom: 40px;
-      }
+    .title {
+      margin-top: 30px;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      font-size: large;
+      font-weight: 10;
+    }
 
-      #right {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
+    #wordcard {
+      background-color: white;
+      border-radius: 20px;
+      padding: 30px;
+      width: 80%;
+      margin-top: 200px;
+      margin-bottom: 40px;
+    }
 
-      button {
-        margin: 10px;
-        width: 200px;
-        height: 50px;
-      }
-    </style>
-  </head>
+    #right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
 
-  <body>
-    <header
-      style="
-        width: 100%;
-        height: 60px;
-        background-color: #1b1b1b;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      "
-    >
-      <img
-        src="../images/Frame 1@2x.png"
-        alt="no logo"
-        height="65px"
-        style="margin-left: 20px; margin-top: 10px"
-      />
-      <div
-        style="
-          color: white;
-          font-family: Poppins, sans-serif;
-          margin-right: 20px;
-        "
-        onclick="logout()"
-      >
-        Logout
-        <img
-          src="../images/logout.png"
-          alt="no image"
-          style="margin-left: 15px"
-          width="35px"
-          height="35px"
-        />
-      </div>
-    </header>
-    <div id="main">
-      <div id="aside">
-        <div class="title">Navigation</div>
-        <div
-          class="item"
-          onclick="(function(){
+    button {
+      margin: 10px;
+      width: 200px;
+      height: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <header
+    style="width: 100% ; cursor: pointer; height:60px; background-color: #1b1b1b ;display: flex;align-items: center; justify-content: space-between;">
+    <img src="../images/Frame 1@2x.png" alt="no logo" height="65px" style="margin-left: 20px;margin-top:10px">
+    <div style="color:white;font-family: Poppins, sans-serif; margin-right: 20px;
+   " onclick="logout()">Logout <img
+        src="https://raw.githubusercontent.com/AaronMathew11/Wordsmith/master/images/logout.png" alt="no image"
+        style="margin-left: 15px;" width="35px" height="35px"></div>
+  </header>
+  <div id="main">
+    <div id="aside">
+      <div class="title">Navigation </div>
+      <div class="item" onclick="(function(){
             window.location.href='home.html';
             return false;
-            })();return false;"
-        >
-          Home
-        </div>
-        <div
-          class="item"
-          onclick="(function(){
+            })();return false;">
+        Home
+      </div>
+      <div class="item" onclick="(function(){
             window.location.href='Challengeme.html';
             return false;
-            })();return false;"
-        >
-          Challenge me
-        </div>
-        <div class="title">Go Solo :</div>
-        <div id="Interests"></div>
+            })();return false;">
+        Challenge me
       </div>
-      <div id="right">
-        <div id="wordcard">
-          <h2>Word</h2>
-          <br />
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolores
-          molestias minima doloremque exercitationem quasi, esse saepe.
-          Reprehenderit hic explicabo dicta facilis laudantium eius beatae
-          magni, qui eligendi temporibus tempora dolores. Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Quos omnis minima, numquam debitis
-          earum assumenda, rem totam, saepe ducimus voluptatem cupiditate quis?
-          Sed corporis suscipit consequuntur aliquam eveniet possimus facere!
+      <div class="title">Go Solo :</div>
+      <div id="Interests"></div>
+    </div>
+    <div id="right">
+      <div id="wordcard">
+        <h2 id="word">Word</h2>
+        <br />
+        <div id="meaning">
+
         </div>
-        <div style="display: flex">
-          <button type="button" class="btn btn-success">Familiar</button>
-          <button type="button" class="btn btn-danger">Not Familiar</button>
-        </div>
+      </div>
+      <div style="display: flex">
+        <button id="yes" onclick="buttonClick(this)" type="button" class="btn btn-success">Familiar</button>
+        <button id="no" onclick="buttonClick(this)" type="button" class="btn btn-danger">Not Familiar</button>
+      </div>
+
+      <div>
+        <div style="color:white">Known <span id="known">0</span></div>
+        <div style="color:white">UnKnown <span id="unknown">0</span></div>
+      </div>
+
+      <div id="exceed">
+
       </div>
     </div>
-    <script>
-      function logout() {
-        localStorage.removeItem("token");
-        window.open("./register.html", "_self");
+  </div>
+  <script>
+
+    const token = localStorage.getItem('token');
+    const tokenParse = JSON.parse(token)
+
+    let knownWord = 0;
+    let notKnownWord = 0;
+    let count = 0;
+    let words;
+    let wordDiv;
+    let meaningDiv;
+
+    let knownDiv = document.getElementById("known");
+    let unknownDiv = document.getElementById("unknown");
+
+    function logout() {
+      localStorage.removeItem('token')
+      window.open("./register.html", "_self");
+
+    }
+
+
+    async function buttonClick(e) {
+      console.log(count)
+      if (count >= words.length) {
+        console.log("Hi")
+        document.getElementById("exceed").innerHTML = "Click try again for New words"
+
+      }
+      else {
+        if (e.id == "yes") {
+          //Store that word in database
+
+          try {
+            const storeWordReq = await fetch("http://localhost:4010/storeWords", {
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              method: "POST",
+              body: JSON.stringify({
+                token: tokenParse,
+                word: words[count].word
+              })
+            })
+
+            const res = await storeWordReq.json();
+            count++
+            knownWord++;
+            knownDiv.innerHTML = knownWord;
+            wordDiv.innerHTML = words[count].word;
+            meaningDiv.innerHTML = words[count].defs[0]
+          }
+          catch (e) {
+
+          }
+
+        }
+        else {
+          count++;
+          wordDiv.innerHTML = words[count].word;
+          meaningDiv.innerHTML = words[count].defs[0]
+          notKnownWord++;
+          unknownDiv.innerHTML = notKnownWord
+
+        }
       }
 
-      (async () => {
-        var str = "";
-        const token = localStorage.getItem("token");
-        const tokenParse = JSON.parse(token);
-        console.log(tokenParse);
 
-        const topicFetch = await fetch("http://localhost:4010/getTopics", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          method: "POST",
-          body: JSON.stringify({ token: tokenParse }),
-        });
 
-        const top = await topicFetch.json();
-        const chosentopics = top.topics;
-        console.log(chosentopics);
-        var interests = document.getElementById("Interests");
-        for (var i = 0; i < chosentopics.length; i++) {
-          str +=
-            '<div id="' +
-            chosentopics[i] +
-            '" class="item">' +
-            chosentopics[i] +
-            "</div>";
-        }
-        interests.innerHTML = str;
-      })();
-    </script>
-  </body>
+    }
+
+    async function topicClick(e) {
+
+      console.log("GOT")
+      wordDiv = document.getElementById('word')
+      meaningDiv = document.getElementById('meaning')
+
+
+      const wordsFetch = await fetch("http://localhost:4010/getWordsFromTopic", {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({ token: tokenParse, topic: e.id })
+      })
+
+      const wordsRes = await wordsFetch.json();
+      console.log(wordsRes.wordsToDisplay)
+      words = wordsRes.wordsToDisplay
+      wordDiv.innerHTML = words[0].word;
+      meaningDiv.innerHTML = words[0].defs[0]
+      count = 0;
+      notKnownWord = 0;
+      unknownDiv.innerHTML = notKnownWord
+      knownWord = 0;
+      knownDiv.innerHTML = knownWord;
+
+    }
+
+    (async () => {
+
+
+      wordDiv = document.getElementById('word')
+      meaningDiv = document.getElementById('meaning')
+
+      var str = "";
+
+
+      //Show All user topics
+      const topicFetch = await fetch("http://localhost:4010/getTopics", {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({ token: tokenParse })
+      })
+
+      const top = await topicFetch.json()
+      const chosentopics = top.topics
+      console.log(chosentopics)
+      var interests = document.getElementById("Interests");
+      for (var i = 0; i < chosentopics.length; i++) {
+        str +=
+          `<div style="cursor:pointer" id=${chosentopics[i]} onclick="topicClick(this)"` +
+          chosentopics[i] +
+          '" class="item">' +
+          chosentopics[i] +
+          "</div>";
+      }
+      interests.innerHTML = str;
+
+      const wordsFetch = await fetch("http://localhost:4010/getWords", {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({ token: tokenParse })
+      })
+
+      const wordsRes = await wordsFetch.json();
+      console.log(wordsRes.wordsToDisplay)
+      words = wordsRes.wordsToDisplay
+      wordDiv.innerHTML = words[0].word;
+      meaningDiv.innerHTML = words[0].defs[0]
+
+
+    })()
+
+
+  </script>
+</body>
+
 </html>

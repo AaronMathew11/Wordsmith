@@ -1,73 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap"
-      rel="stylesheet"
-    />
-    <title>WordSmith</title>
-    <style>
-      .title {
-        font-size: 18px;
-        font-family: "Poppins", sans-serif;
-        font-style: normal;
-        padding-bottom: 3px;
-        /* identical to box height */
-        color: #f3f3f3;
-        margin-bottom: 20px;
-        margin-top: 20px;
-      }
-      p {
-        color: white;
-        font-family: "Poppins", sans-serif;
-      }
-      .box1 {
-        height: 150px;
-        margin: 10px;
-        background-color: #1b1b1b;
-        padding: 20px;
-        width: 40vw;
-        padding-bottom: 0px;
-        padding-top: 10px;
-        border-radius: 24px;
-        display: flex;
-        flex-direction: column;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-   
-    </style>
-  </head>
-  <body style="background-color: #232323">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;800&display=swap" rel="stylesheet" />
+  <title>WordSmith</title>
+  <style>
+    .title {
+      font-size: 18px;
+      font-family: "Poppins", sans-serif;
+      font-style: normal;
+      padding-bottom: 3px;
+      /* identical to box height */
+      color: #f3f3f3;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
 
-    <header style="width: 100% ; height:60px; background-color: #1b1b1b ;display: flex;align-items: center; justify-content: space-between;">
-      <img src="../images/Frame 1@2x.png" alt="no logo" height="65px" style="margin-left: 20px;margin-top:10px" >
-     <div style="color:white;font-family: Poppins, sans-serif; margin-right: 20px;
-     " onclick="logout()">Logout <img src="../images/logout.png" alt="no image" style="margin-left: 15px;" width="35px" height="35px"></div> 
-    </header>
-    <div
-      class="header"
-      style="
+    p {
+      color: white;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .box1 {
+      height: 150px;
+      margin: 10px;
+      background-color: #1b1b1b;
+      padding: 20px;
+      width: 40vw;
+      padding-bottom: 0px;
+      padding-top: 10px;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+
+<body style="background-color: #232323">
+  <header
+    style="width: 100% ; height:60px; background-color: #1b1b1b ;display: flex;align-items: center; justify-content: space-between;">
+    <img src="../images/Frame 1@2x.png" alt="no logo" height="65px" style="margin-left: 20px;margin-top:10px">
+    <div style="color:white;font-family: Poppins, sans-serif; margin-right: 20px;
+   " onclick="logout()">Logout <img src="../images/logout.png" alt="no image" style="margin-left: 15px;" width="35px"
+        height="35px"></div>
+  </header>
+  <div class="header" style="
         height: 200px;
         display: flex;
         flex-direction: column;
         padding: 50px;
-      "
-    >
-      <div
-        class="Heading"
-        style="
+      ">
+    <div class="Heading" style="
           padding-bottom: 20px;
           width: auto;
           height: auto;
@@ -75,110 +67,107 @@
           font-size: 36px;
           line-height: 42px;
           color: #f3f3f3;
-        "
-      >
-        Welcome Homer!
-      </div>
-      <p>
-        This is a paragraph with more information about something important.
-        This something has many uses and is made of 100% recycled material. This
-        is a paragraph with more information about something important. This
-        something has many uses and is made of 100% recycled material.
-      </p>
+        ">
+      Welcome Homer!
     </div>
+    <p>
+      This is a paragraph with more information about something important.
+      This something has many uses and is made of 100% recycled material. This
+      is a paragraph with more information about something important. This
+      something has many uses and is made of 100% recycled material.
+    </p>
+  </div>
 
-    <div
-      class="footer"
-      style="
+  <div class="footer" style="
         display: flex;
         align-items: center;
         justify-content: space-around;
         padding: 50px;
         padding-bottom: 20px;
-      "
-    >
-      <div class="image" style="height: 300px; width: 300px">
-        <img
-          src="../images/illustration.png"
-          style="
+      ">
+    <div class="image" style="height: 300px; width: 300px">
+      <img src="../images/illustration.png" style="
             height: 40vh;
             width: 40vw;
             object-fit: contain;
             mix-blend-mode: difference;
-          "
-        />
-      </div>
+          " />
+    </div>
 
-      <div
-        class="box"
-        style="
+    <div class="box" style="
           display: flex;
           flex-direction: column;
         
           align-items: center;
-        "
-      >
-        <div
-          class="box1"
+        ">
+      <div class="box1">
+        <p class="title">Easy Words</p>
+        <div class="progress">
+          <div id="easy" class="progress-bar progress-bar-success" role="progressbar" aria-label="Example with label"
+            style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
+      </div>
 
-        >
-          <p class="title">Easy Words</p>
-          <div class="progress">
-            <div
-              class="progress-bar progress-bar-success"
-              role="progressbar"
-              aria-label="Example with label"
-              style="width: 25%"
-              aria-valuenow="25"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            >
-              25%
-            </div>
-          </div>
-        </div>
+      <div class="box1">
+        <p class="title">Intermediate Words</p>
+        <div class="progress">
+          <div id="medium" class="progress-bar progress-bar-success" role="progressbar" aria-label="Example with label"
+            style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
 
-        <div
-          class="box1"
-        >
-          <p class="title">Intermediate Words</p>
-          <div class="progress">
-            <div
-              class="progress-bar progress-bar-success"
-              role="progressbar"
-              aria-label="Example with label"
-              style="width: 25%"
-              aria-valuenow="25"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            >
-              25%
-            </div>
           </div>
         </div>
-        <div class="box1">
-          <p class="title">Advanced Words</p>
-          <div class="progress">
-            <div
-              class="progress-bar progress-bar-success"
-              role="progressbar"
-              aria-label="Example with label"
-              style="width: 25%"
-              aria-valuenow="25"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            >
-              25%
-            </div>
+      </div>
+      <div class="box1">
+        <p class="title">Advanced Words</p>
+        <div class="progress">
+          <div id="hard" class="progress-bar progress-bar-success" role="progressbar" aria-label="Example with label"
+            style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+
           </div>
         </div>
-        <button type="button" class="btn btn-success"onclick="(function(){
+      </div>
+      <button type="button" class="btn btn-success" onclick="(function(){
           window.location.href='wordspage.html';
           return false;
-          })();return false;"" style="width: 30%; margin-top: 30px;">Learn >> </button>
+          })();return false;"" style=" width: 30%; margin-top: 30px;">Learn >> </button>
 
-      </div>
     </div>
-    
-  </body>
+  </div>
+  <script>
+
+    function logout() {
+      localStorage.removeItem('token')
+      window.open("./register.html", "_self");
+
+    }
+
+    (async () => {
+      let easyDiv = document.getElementById('easy');
+      let mediumDiv = document.getElementById('medium');
+      let hardDiv = document.getElementById('hard');
+      const token = localStorage.getItem('token');
+      const tokenParse = JSON.parse(token);
+
+      const req = await fetch("http://localhost:4010/getDifficultyLevel", {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+          token: tokenParse
+        })
+      })
+
+      const diff = await req.json();
+      easyDiv.innerHTML = diff.easy;
+      mediumDiv.innerHTML = diff.medium;
+      hardDiv.innerHTML = diff.hard
+
+    })()
+
+
+  </script>
+</body>
+
 </html>
