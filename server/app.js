@@ -193,7 +193,7 @@ app.use("/storeWords", verify, async (req, res) => {
 
     console.log(easy1)
     try{
-        if (word.length <= 5) {
+        if (word.length <= 7) {
             console.log("Stroing easy")
             const update = await wordsSchema.updateOne({ _id: id }, {
                 $addToSet: {
@@ -205,7 +205,7 @@ app.use("/storeWords", verify, async (req, res) => {
                 }
             })
         }
-        else if (word.length == 6) {
+        else if (word.length > 8 && word.length <10) {
             console.log("Stpring medium")
             const update = await wordsSchema.updateOne({ _id: id }, {
                 $addToSet: {
