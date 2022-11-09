@@ -26,11 +26,12 @@ async function verify() {
     password: pass,
   }
 
-
   if (name != "" && email != "" && pass != "" && repass != "") {
     if (repass != pass) {
       document.getElementById("errorbox").style.display = "block";
     } else {
+
+      if(pass.length>8){
 
       //Send Details to Server
       const req = await fetch("http://localhost:4010/register", {
@@ -56,10 +57,19 @@ async function verify() {
       }
 
     }
-  } else {
-    document.getElementById("warnbox").style.display = "block";
+    else{
+      document.getElementById("passshort").style.display = "block";
+
+    }
+  }
+
+
+} else {
+    document.getElementById("userexists").style.display = "block";
   }
 }
+
+
 
 
 async function login() {
@@ -82,7 +92,7 @@ async function login() {
 
   const res = await req.json();
   if (res.flag === false) {
-    document.getElementById("warnbox").style.display = "block";
+    document.getElementById("invalidcred").style.display = "block";
 
   }
   else {

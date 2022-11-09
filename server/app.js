@@ -8,7 +8,7 @@ const { wordsSchema, User } = require("./model");
 const jwt = require("jsonwebtoken");
 const { verify } = require("./verify")
 
-const PORT = 4010
+const PORT = process.env.PORT || 4010
 
 app.use(cors())
 app.use(express.static(__dirname))

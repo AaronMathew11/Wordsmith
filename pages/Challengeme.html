@@ -28,6 +28,21 @@
 </style>
 </head>
 <body>
+    <header style="width: 100% ; height:60px; background-color: #1b1b1b ;display: flex;align-items: center; justify-content: space-between;">
+        <img src="../images/Frame 1@2x.png" alt="no logo" height="65px" style="margin-left: 20px;margin-top:10px" >
+       <div style="color:white;font-family: Poppins, sans-serif; margin-right: 20px;
+       " onclick="logout()">Logout <img src="../images/logout.png" alt="no image" style="margin-left: 15px;" width="35px" height="35px"></div> 
+      </header>
 <p>Comming Soon!</p>
+<div style="color: white;cursor: pointer;" onclick="window.history.go(-1); return false;"> Go back</div>
 </body>
+<script>
+
+function logout() {
+      localStorage.removeItem('token')
+      window.open("./register.html", "_self");
+
+    }
+
+</script>
 </html>
