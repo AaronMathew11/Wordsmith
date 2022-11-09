@@ -250,10 +250,10 @@ app.use("/getWords", verify, async (req, res) => {
     const token = req.token
     const decodedToken = jwt.decode(token)
     const email = decodedToken.email
-    const difficulty = req.body.difficulty;
+    // const difficulty = req.body.difficulty;
 
-    const wordLen = difficulty == "easy" ? 5 : difficulty == "medium" ? 7 : difficulty == "hard" ? 7 : null
-    console.log(wordLen)
+    // const wordLen = difficulty == "easy" ? 5 : difficulty == "medium" ? 7 : difficulty == "hard" ? 7 : null
+    // console.log(wordLen)
     let wordsToDisplay = []
 
     //Get the selected topics from db
@@ -273,7 +273,7 @@ app.use("/getWords", verify, async (req, res) => {
         let num = 0;
         let totalWords = 0;
         let temp = 0;
-        while (num < 2) {
+        while (num < 5) {
 
             totalWords = totalWords + 2;
             const reqWord = await (await fetch(`https://api.datamuse.com/words?ml=${topics[k]}&max=${totalWords}&md=d`)).json()
@@ -302,13 +302,14 @@ app.use("/getWords", verify, async (req, res) => {
                 }
             })
 
-            words = words.filter((v) => {
+            // words = words.filter((v) => {
 
-                if (v.word.length <= wordLen) {
-                    return v;
-                }
-            })
+            //     if (v.word.length <= wordLen) {
+            //         return v;
+            //     }
+            // })
 
+            //Delete words that user already knows
             for (let i = 0; i < words.length; i++) {
                 const word = words[i].word;
 
