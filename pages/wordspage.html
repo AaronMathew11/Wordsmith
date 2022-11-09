@@ -116,9 +116,14 @@
         <div style="color:white">Known <span id="known">0</span></div>
         <div style="color:white">UnKnown <span id="unknown">0</span></div>
       </div>
+
+      <div id="exceed">
+
+      </div>
     </div>
   </div>
   <script>
+
     const token = localStorage.getItem('token');
     const tokenParse = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF0aHVsMTIzIiwiaWF0IjoxNjY3OTk5MjE1fQ.n1y4ADH6KLbDwm0awB5StsL6-G9W0ez1qzIiwdbykIU"
 
@@ -138,49 +143,83 @@
 
     }
 
+
     async function buttonClick(e) {
-
-      if (e.id == "yes") {
-        //Store that word in database
-
-        try {
-          const storeWordReq = await fetch("http://localhost:4010/storeWords", {
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify({
-              token: tokenParse,
-              word: words[count].word
-            })
-          })
-
-          const res = await storeWordReq.json();
-          count++
-          knownWord++;
-          knownDiv.innerHTML = knownWord;
-          unknownDiv.innerHTML = notKnownWord
-        
-          wordDiv.innerHTML = words[count].word;
-          meaningDiv.innerHTML = words[count].defs[0]
-        }
-        catch (e) {
-
-        }
+      console.log(count)
+      if (count >= words.length) {
+        console.log("Hi")
+        document.getElementById("exceed").innerHTML = "Click try again for New words"
 
       }
       else {
-        count++;
-        wordDiv.innerHTML = words[count].word;
-        meaningDiv.innerHTML = words[count].defs[0]
-        notKnownWord++;
-        unknownDiv.innerHTML = notKnownWord
+        if (e.id == "yes") {
+          //Store that word in database
 
+          try {
+            const storeWordReq = await fetch("http://localhost:4010/storeWords", {
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              method: "POST",
+              body: JSON.stringify({
+                token: tokenParse,
+                word: words[count].word
+              })
+            })
+
+            const res = await storeWordReq.json();
+            count++
+            knownWord++;
+            knownDiv.innerHTML = knownWord;
+            wordDiv.innerHTML = words[count].word;
+            meaningDiv.innerHTML = words[count].defs[0]
+          }
+          catch (e) {
+
+          }
+
+        }
+        else {
+          count++;
+          wordDiv.innerHTML = words[count].word;
+          meaningDiv.innerHTML = words[count].defs[0]
+          notKnownWord++;
+          unknownDiv.innerHTML = notKnownWord
+
+        }
       }
+
 
 
     }
 
+    async function topicClick(e) {
+
+      console.log("GOT")
+      wordDiv = document.getElementById('word')
+      meaningDiv = document.getElementById('meaning')
+
+
+      const wordsFetch = await fetch("http://localhost:4010/getWordsFromTopic", {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({ token: tokenParse, topic: e.id })
+      })
+
+      const wordsRes = await wordsFetch.json();
+      console.log(wordsRes.wordsToDisplay)
+      words = wordsRes.wordsToDisplay
+      wordDiv.innerHTML = words[0].word;
+      meaningDiv.innerHTML = words[0].defs[0]
+      count = 0;
+      notKnownWord = 0;
+      unknownDiv.innerHTML = notKnownWord
+      knownWord = 0;
+      knownDiv.innerHTML = knownWord;
+
+    }
 
     (async () => {
 
@@ -206,7 +245,7 @@
       var interests = document.getElementById("Interests");
       for (var i = 0; i < chosentopics.length; i++) {
         str +=
-          '<div id="' +
+          `<div style="cursor:pointer" id=${chosentopics[i]} onclick="topicClick(this)"` +
           chosentopics[i] +
           '" class="item">' +
           chosentopics[i] +
