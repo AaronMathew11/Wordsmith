@@ -31,7 +31,10 @@ app.use("/register", async (req, res) => {
     const UserWords = new wordsSchema({
         email,
         topics: [],
-        knownWords: []
+        knownWords: [],
+        easy: 0,
+        medium: 0,
+        hard: 0
     })
 
     const finding = await User.findOne({ email })
@@ -152,28 +155,93 @@ app.use("/getTopics", verify, async (req, res) => {
 })
 
 
+app.use("/getDifficultyLevel",verify,async (req,res)=>{
+
+    const token = req.token
+    const decodedToken = jwt.decode(token)
+    const email = decodedToken.email
+    const idReq = await wordsSchema.findOne({ email })
+    const easy = idReq.easy
+    const medium = idReq.medium;
+    const hard= idReq.hard
+
+    console.log(hard)
+    res.json({
+        easy,
+        medium,
+        hard
+    })
+
+
+
+})
+
+
 app.use("/storeWords", verify, async (req, res) => {
-    console.log("You got it here")
+
     const token = req.token
     const decodedToken = jwt.decode(token)
     const email = decodedToken.email
     const word = req.body.word;
 
     const idReq = await wordsSchema.findOne({ email })
+    const easy1 = idReq.easy+1;
+    const medium1 = idReq.medium+1;
+    const hard1 = idReq.hard+1;
     const id = idReq._id.valueOf()
 
-    const update = await wordsSchema.updateOne({ _id: id }, {
-        $addToSet: {
-            knownWords: word
+    console.log(easy1)
+    try{
+        if (word.length <= 5) {
+            const update = await wordsSchema.updateOne({ _id: id }, {
+                $addToSet: {
+                    knownWords: word,
+    
+                },
+                $set: {
+                    easy: easy1
+                }
+            })
         }
-    })
+        else if (word.length == 6) {
+    
+            const update = await wordsSchema.updateOne({ _id: id }, {
+                $addToSet: {
+                    knownWords: word,
+    
+                },
+                $set: {
+                    medium: medium1
+                }
+            })
+        }
+        else {
+            const update = await wordsSchema.updateOne({ _id: id }, {
+                $addToSet: {
+                    knownWords: word,
+    
+                },
+                $set: {
+                    hard: hard1
+                }
+            })
+        }
+    
+    
+    
+        res.json({
+            data: "Success",
+            flag:true
+        })
+    
+    }
+    catch(e){
 
-    console.log(update)
-
-    res.json({
-        data: "Success"
-    })
-
+        res.json({
+            flag:false,
+            data:"ERROR"
+        })
+    }
 
 })
 
@@ -284,7 +352,7 @@ app.use("/", (req, res) => {
     res.send("Hello")
 })
 
-mongoose.connect("").then(result => {
+mongoose.connect("mongodb+srv://Athul:Athul@cluster0.qhzaz.mongodb.net/?retryWrites=true&w=majority").then(result => {
     console.log("Conncted")
     app.listen(PORT);
 }).catch(
@@ -292,4 +360,5 @@ mongoose.connect("").then(result => {
         console.log("Error")
     }
 )
+
 

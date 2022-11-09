@@ -23,7 +23,17 @@ const wordsSchema = new Schema({
     },
     knownWords:{
         type:[String]
+    },
+    easy:{
+        type:Number
+    },
+    medium:{
+        type:Number
+    },
+    hard:{
+        type:Number
     }
+
 
 })
 
