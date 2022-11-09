@@ -27,7 +27,7 @@ async function verify() {
   }
 
   if (name != "" && email != "" && pass != "" && repass != "") {
-    
+
     document.getElementById("warnbox").style.display = "none";
 
     if (repass != pass) {
@@ -59,7 +59,9 @@ async function verify() {
           setTimeout(() => {
             document.getElementById('logindiv').style.display = 'block'
             document.getElementById('registerdiv').style.display = 'none'
+            document.getElementById("registerBox").style.display = "none";
           }, 400)
+        
 
         }
 
@@ -72,8 +74,11 @@ async function verify() {
 
 
   }
-  document.getElementById("warnbox").style.display = "block";
+  else{
+    document.getElementById("warnbox").style.display = "block";
 
+  }
+ 
 
 }
 
