@@ -255,7 +255,7 @@ app.use("/", (req, res) => {
 
 mongoose
   .connect(
-    "mongodb+srv://root:aaron@mongoprototype.c8iez.mongodb.net/?retryWrites=true&w=majority"
+    "mongodb+srv://Athul:Athul@cluster0.qhzaz.mongodb.net/?retryWrites=true&w=majority"
   )
   .then((result) => {
     console.log("Conncted");
