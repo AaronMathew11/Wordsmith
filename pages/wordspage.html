@@ -73,10 +73,13 @@
 </head>
 
 <body>
-  <header style="width: 100% ; cursor: pointer; height:60px; background-color: #1b1b1b ;display: flex;align-items: center; justify-content: space-between;">
-    <img src="../images/Frame 1@2x.png" alt="no logo" height="65px" style="margin-left: 20px;margin-top:10px" >
-   <div style="color:white;font-family: Poppins, sans-serif; margin-right: 20px;
-   " onclick="logout()">Logout <img src="https://raw.githubusercontent.com/AaronMathew11/Wordsmith/master/images/logout.png" alt="no image" style="margin-left: 15px;" width="35px" height="35px"></div> 
+  <header
+    style="width: 100% ; cursor: pointer; height:60px; background-color: #1b1b1b ;display: flex;align-items: center; justify-content: space-between;">
+    <img src="../images/Frame 1@2x.png" alt="no logo" height="65px" style="margin-left: 20px;margin-top:10px">
+    <div style="color:white;font-family: Poppins, sans-serif; margin-right: 20px;
+   " onclick="logout()">Logout <img
+        src="https://raw.githubusercontent.com/AaronMathew11/Wordsmith/master/images/logout.png" alt="no image"
+        style="margin-left: 15px;" width="35px" height="35px"></div>
   </header>
   <div id="main">
     <div id="aside">
@@ -101,24 +104,33 @@
         <h2 id="word">Word</h2>
         <br />
         <div id="meaning">
-        
+
         </div>
       </div>
       <div style="display: flex">
         <button id="yes" onclick="buttonClick(this)" type="button" class="btn btn-success">Familiar</button>
         <button id="no" onclick="buttonClick(this)" type="button" class="btn btn-danger">Not Familiar</button>
       </div>
+
+      <div>
+        <div style="color:white">Known <span id="known">0</span></div>
+        <div style="color:white">UnKnown <span id="unknown">0</span></div>
+      </div>
     </div>
   </div>
   <script>
-      const token = localStorage.getItem('token');
-    const tokenParse = JSON.parse(token)
+    const token = localStorage.getItem('token');
+    const tokenParse = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImF0aHVsMTIzIiwiaWF0IjoxNjY3OTk5MjE1fQ.n1y4ADH6KLbDwm0awB5StsL6-G9W0ez1qzIiwdbykIU"
 
-
+    let knownWord = 0;
+    let notKnownWord = 0;
     let count = 0;
     let words;
     let wordDiv;
     let meaningDiv;
+
+    let knownDiv = document.getElementById("known");
+    let unknownDiv = document.getElementById("unknown");
 
     function logout() {
       localStorage.removeItem('token')
@@ -131,30 +143,41 @@
       if (e.id == "yes") {
         //Store that word in database
 
-        const storeWordReq = await fetch("http://localhost:4010/storeWords", {
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          method: "POST",
-          body: JSON.stringify({ token: tokenParse,
-          word:words[count].word })
-        })
+        try {
+          const storeWordReq = await fetch("http://localhost:4010/storeWords", {
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify({
+              token: tokenParse,
+              word: words[count].word
+            })
+          })
 
-        const res = await storeWordReq.json();
+          const res = await storeWordReq.json();
+          count++
+          knownWord++;
+          knownDiv.innerHTML = knownWord;
+          unknownDiv.innerHTML = notKnownWord
+        
+          wordDiv.innerHTML = words[count].word;
+          meaningDiv.innerHTML = words[count].defs[0]
+        }
+        catch (e) {
 
-        console.log(res)
+        }
 
       }
-      console.log(e)
-      // if (count > words.length) {
-        console.log(count)
-      // }
-      count++;
-      wordDiv.innerHTML = words[count].word;
-       meaningDiv.innerHTML = words[count].defs[0]
+      else {
+        count++;
+        wordDiv.innerHTML = words[count].word;
+        meaningDiv.innerHTML = words[count].defs[0]
+        notKnownWord++;
+        unknownDiv.innerHTML = notKnownWord
 
+      }
 
-      
 
     }
 
@@ -166,7 +189,7 @@
       meaningDiv = document.getElementById('meaning')
 
       var str = "";
- 
+
 
       //Show All user topics
       const topicFetch = await fetch("http://localhost:4010/getTopics", {
