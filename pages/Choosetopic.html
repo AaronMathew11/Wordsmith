@@ -190,7 +190,7 @@
       const tokenParse = JSON.parse(token);
       //Store topics in database
     console.log("In choose topic",tokenParse)
-      const req = await fetch("http://localhost:4010/storeTopic", {
+      const req = await fetch("https://wordsmithvocab.herokuapp.com/storeTopic", {
         headers: {
           'Content-Type': 'application/json'
         },

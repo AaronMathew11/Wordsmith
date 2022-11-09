@@ -149,7 +149,7 @@
       const token = localStorage.getItem('token');
       const tokenParse = JSON.parse(token);
 
-      const req = await fetch("http://localhost:4010/getDifficultyLevel", {
+      const req = await fetch("https://wordsmithvocab.herokuapp.com/getDifficultyLevel", {
         headers: {
           'Content-Type': 'application/json'
         },

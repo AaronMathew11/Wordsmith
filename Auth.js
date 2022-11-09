@@ -34,7 +34,7 @@ async function verify() {
       if(pass.length>8){
 
       //Send Details to Server
-      const req = await fetch("http://localhost:4010/register", {
+      const req = await fetch("https://wordsmithvocab.herokuapp.com/register", {
         headers: {
           'Content-Type': 'application/json'
         },
@@ -82,7 +82,7 @@ async function login() {
     password: pass,
   }
 
-  const req = await fetch("http://localhost:4010/login", {
+  const req = await fetch("https://wordsmithvocab.herokuapp.com/login", {
     headers: {
       'Content-Type': 'application/json'
     },
@@ -99,7 +99,7 @@ async function login() {
     const token = res.token;
     console.log(token)
     localStorage.setItem("token", JSON.stringify(token))
-    const topicVerifyFetch = await fetch("http://localhost:4010/getTopics", {
+    const topicVerifyFetch = await fetch("https://wordsmithvocab.herokuapp.com/getTopics", {
       headers: {
         'Content-Type': 'application/json'
       },
