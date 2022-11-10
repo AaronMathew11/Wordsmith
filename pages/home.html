@@ -104,7 +104,7 @@
         <p class="title">Easy Words</p>
         <div class="progress">
           <div id="easy" class="progress-bar progress-bar-success" role="progressbar" aria-label="Example with label"
-            style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+            style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@
         <p class="title">Intermediate Words</p>
         <div class="progress">
           <div id="medium" class="progress-bar progress-bar-success" role="progressbar" aria-label="Example with label"
-            style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+            style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
 
           </div>
         </div>
@@ -122,7 +122,7 @@
         <p class="title">Advanced Words</p>
         <div class="progress">
           <div id="hard" class="progress-bar progress-bar-success" role="progressbar" aria-label="Example with label"
-            style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+            style="width: 0%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
 
           </div>
         </div>
@@ -160,9 +160,13 @@
       })
 
       const diff = await req.json();
+      var totall = (diff.easy+diff.medium+diff.hard);
       easyDiv.innerHTML = diff.easy;
+      easyDiv.style.width = (diff.easy)/(totall)*100 + "%";
       mediumDiv.innerHTML = diff.medium;
-      hardDiv.innerHTML = diff.hard
+      mediumDiv.style.width = (diff.medium)/(totall)*100 + "%";
+      hardDiv.innerHTML = diff.hard;
+      hardDiv.style.width = (diff.hard)/(totall)*100 + "%";
 
     })()
 
