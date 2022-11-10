@@ -13,8 +13,9 @@
 
         $(function () {
 
-            let token = localStorage.getItem('token')
+            const token = localStorage.getItem('token');
             let tokenParse = JSON.parse(token)
+            console.log("token",tokenParse)
             if(tokenParse == null){
                 $("#content").load("register.html");
             }
